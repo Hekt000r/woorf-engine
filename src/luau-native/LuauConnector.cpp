@@ -38,7 +38,7 @@ public:
      */
     void registerFunctionToLua(const char *name, lua_CFunction function)
     {
-        lua_pushcfunction(L, function, name);
+        lua_pushcfunction(L, function, nullptr); // temporary: cannot use the char *name because its a pointer to a temporary C# string  
         lua_setglobal(L, name);
     }
 
