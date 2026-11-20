@@ -4,16 +4,18 @@
 #include <string>
 #include <lua.h>
 
-using std::string;
-
-class LuauVM {
-    private:
-    lua_State* L;
-
-    public:
+class LuauVM
+{
+public:
     LuauVM();
-    void run(string &source,char* chunkName);
-    void registerFunctionToLua(char* name, lua_CFunction function);
+    ~LuauVM();
+
+    void run(const std::string source, const char* chunkName = "=script");
+    void registerFunctionToLua(const char* name, lua_CFunction function);
+
+private:
+    lua_State* L;
+    void throwTopError();
 };
 
 #endif

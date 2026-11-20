@@ -5,8 +5,8 @@
  * @author Hektor
  */
 
-#include <LuauConnector.hpp>
-#include <LuauTypesHelper.hpp>
+#include "LuauConnector.hpp"
+#include "LuauTypesHelper.hpp"
 #include <string>
 
 #ifdef _WIN32

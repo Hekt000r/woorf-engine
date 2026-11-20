@@ -3,5 +3,9 @@ project(woorf_luau CXX)
 
 add_subdirectory(vendor)
 
-add_executable(woorf_luau LuauConnector.cpp LuauTypesHelper.cpp LuauBridge.cpp)
+add_library(woorf_luau SHARED
+    LuauConnector.cpp
+    LuauTypesHelper.cpp
+    LuauBridge.cpp
+)
 target_link_libraries(woorf_luau PRIVATE Luau.VM Luau.Compiler)
