@@ -6,6 +6,7 @@
  */
 
 #include <LuauConnector.hpp>
+#include <LuauTypesHelper.hpp>
 #include <string>
 
 #ifdef _WIN32
@@ -76,3 +77,37 @@ EXPORT int l_register_function(LuauVM* vm, lua_CFunction function, char* name) {
         return 1;
     }
 }
+
+// C# callbacks and FFI
+
+
+
+/* Defines a function pointer type
+* Defines C# callbacks for accessing and setting properties.
+* Supports functions with the shape:
+* @fn GetPropertyCallback
+* @param object | The object we wish to access
+* @param property | The name of the property that is being changed in the `object`
+* @param result | Result, pass a reference that will be changed by C#, to include result.success and other data
+* @returns bool true for success but check Result->success
+* 
+* @fn SetPropertyCallback
+* @param object | The object we wish to change/access
+* @param property | The name of the property that is being changed/accessed
+* @param value | The new value to be assigned
+* @returns bool, true for success
+*/
+
+using GetPropertyCallback =
+    bool (*)(
+        LUAU_TYPES_HELPER_HPP::ObjectValue object,
+        const char* property,
+        NativeValue* result
+    );
+
+using SetPropertyCallback =
+    bool (*)(
+        LUAU_TYPES_HELPER_HPP::ObjectValue object,
+        const char* property,
+        const NativeValue* value
+    );
