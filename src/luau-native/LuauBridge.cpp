@@ -1,6 +1,7 @@
 /**
- * LuauLibrary.cpp
+ * LuauBridge.cpp
  * Exports c++ luau interface as a library, C-API export
+ * Handles the connnection C# -> C++ -> Lua and vice-versa
  * @author Hektor
  */
 
